@@ -17,6 +17,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    NSLog(@"HELLO WORLD!");
+    Library *catalog = [[Library alloc] init];
+    [catalog printCatalog];
+    
     return YES;
 }
 
