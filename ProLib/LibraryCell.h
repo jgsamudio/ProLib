@@ -10,4 +10,7 @@
 
 @interface LibraryCell : UITableViewCell
 
+@property (nonatomic, weak) IBOutlet UILabel *bookTitle;
+@property (nonatomic, weak) IBOutlet UILabel *bookAuthors;
+
 @end

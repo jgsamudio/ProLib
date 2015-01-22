@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2059DC711A70473500229A48 /* LibraryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2059DC701A70473500229A48 /* LibraryTableViewController.m */; };
+		2059DC741A705C0800229A48 /* AddBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2059DC731A705C0800229A48 /* AddBookViewController.m */; };
 		206345E31A6ECDFD00A59068 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 206345E21A6ECDFD00A59068 /* main.m */; };
 		206345E61A6ECDFD00A59068 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 206345E51A6ECDFD00A59068 /* AppDelegate.m */; };
 		206345E91A6ECDFD00A59068 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 206345E81A6ECDFD00A59068 /* ViewController.m */; };
@@ -30,6 +32,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2059DC6F1A70473500229A48 /* LibraryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryTableViewController.h; sourceTree = "<group>"; };
+		2059DC701A70473500229A48 /* LibraryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryTableViewController.m; sourceTree = "<group>"; };
+		2059DC721A705C0800229A48 /* AddBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddBookViewController.h; sourceTree = "<group>"; };
+		2059DC731A705C0800229A48 /* AddBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddBookViewController.m; sourceTree = "<group>"; };
 		206345DD1A6ECDFD00A59068 /* ProLib.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProLib.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		206345E11A6ECDFD00A59068 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		206345E21A6ECDFD00A59068 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -96,6 +102,10 @@
 				206345E81A6ECDFD00A59068 /* ViewController.m */,
 				2063460C1A70293400A59068 /* LibraryCell.h */,
 				2063460D1A70293400A59068 /* LibraryCell.m */,
+				2059DC6F1A70473500229A48 /* LibraryTableViewController.h */,
+				2059DC701A70473500229A48 /* LibraryTableViewController.m */,
+				2059DC721A705C0800229A48 /* AddBookViewController.h */,
+				2059DC731A705C0800229A48 /* AddBookViewController.m */,
 				206345EA1A6ECDFD00A59068 /* Main.storyboard */,
 				206345ED1A6ECDFD00A59068 /* Images.xcassets */,
 				206345EF1A6ECDFD00A59068 /* LaunchScreen.xib */,
@@ -238,6 +248,8 @@
 				206345E91A6ECDFD00A59068 /* ViewController.m in Sources */,
 				206345E61A6ECDFD00A59068 /* AppDelegate.m in Sources */,
 				206345E31A6ECDFD00A59068 /* main.m in Sources */,
+				2059DC711A70473500229A48 /* LibraryTableViewController.m in Sources */,
+				2059DC741A705C0800229A48 /* AddBookViewController.m in Sources */,
 				2063460B1A70159400A59068 /* Library.m in Sources */,
 				2063460E1A70293400A59068 /* LibraryCell.m in Sources */,
 			);
@@ -432,6 +444,7 @@
 				206346021A6ECDFD00A59068 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		206346031A6ECDFD00A59068 /* Build configuration list for PBXNativeTarget "ProLibTests" */ = {
 			isa = XCConfigurationList;
@@ -440,6 +453,7 @@
 				206346051A6ECDFD00A59068 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

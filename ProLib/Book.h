@@ -12,9 +12,11 @@
     
 }
 
+@property NSString *title;
 @property NSString *author;
-@property NSString *categories;
 @property NSString *lastCheckedOut;
 @property NSString *lastCheckedOutBy;
+
+@property NSMutableArray *categories;
 
 @end

@@ -12,14 +12,21 @@
 
 -(id) init{
     self = [super init];
-    self.catalog = [[NSMutableArray alloc] init];
+    self.bookList = [[NSMutableArray alloc] init];
+    Book* newBk = [[Book alloc] init];
+    newBk.author = @"Jonathan Samudio";
+    newBk.title = @"A Biography of an Engineer";
+    
+    [self.bookList addObject:newBk];
+    [self.bookList addObject:newBk];
+    
     [self loadCatalog];
     return self;
 }
 
 - (void) printCatalog {
-    for (int i = 0; i< [self.catalog count]; i++) {
-        NSLog(@"%@", [self.catalog objectAtIndex:i]);
+    for (int i = 0; i< [self.bookList count]; i++) {
+        NSLog(@"%@", [self.bookList objectAtIndex:i]);
     }
 }
 

@@ -21,6 +21,6 @@
 - (NSInteger*) clearCatalog;
 
 
-@property NSMutableArray *catalog;
+@property NSMutableArray *bookList;
 
 @end
