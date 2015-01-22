@@ -12,15 +12,12 @@
 
 -(id) init{
     self = [super init];
-    self.bookList = [[NSMutableArray alloc] init];
-    Book* newBk = [[Book alloc] init];
-    newBk.author = @"Jonathan Samudio";
-    newBk.title = @"A Biography of an Engineer";
+    NSLog(@"Library Init");
     
-    [self.bookList addObject:newBk];
-    [self.bookList addObject:newBk];
+    self.bookList = [[NSMutableArray alloc] init];
     
     [self loadCatalog];
+
     return self;
 }
 
@@ -31,6 +28,45 @@
 }
 
 - (void) loadCatalog{
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:@"http://prolific-interview.herokuapp.com/54bd1bd34fb6c2000805208a/books"]];
+    [request setHTTPMethod:@"GET"];
+    [request setValue:@"application/json;charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+    
+    NSURLResponse *requestResponse;
+    NSData *requestHandler = [NSURLConnection sendSynchronousRequest:request returningResponse:&requestResponse error:nil];
+    
+    NSString *requestReply = [[NSString alloc] initWithBytes:[requestHandler bytes] length:[requestHandler length] encoding:NSASCIIStringEncoding];
+    NSLog(@"requestReply: %@", requestReply);
+    
+    
+    NSError *jsonError;
+    NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:requestHandler options:kNilOptions error:&jsonError];
+    
+    NSLog(@"JSON DIct: %@", dictionary);
+    
+    NSArray *titleArray = [dictionary valueForKey:@"title"];
+    NSArray *authorArray = [dictionary valueForKey:@"author"];
+    NSArray *lastCheckedArray = [dictionary valueForKey:@"lastCheckedOut"];
+    NSArray *lastCheckedByArray = [dictionary valueForKey:@"lastCheckedOutBy"];
+    NSArray *pubArray = [dictionary valueForKey:@"publisher"];
+    NSArray *urlArray = [dictionary valueForKey:@"url"];
+    NSArray *catArray = [dictionary valueForKey:@"categories"];
+    NSArray *idArray = [dictionary valueForKey:@"id"];
+    
+    for(int i = 0; i < [titleArray count]; i++){
+    
+        Book* tempBook = [[Book alloc] init];
+        NSString * title = [titleArray objectAtIndex:i];
+        NSString * author = [authorArray objectAtIndex:i];
+        tempBook.title = title;
+        tempBook.author = author;
+        
+        [self.bookList addObject:tempBook];
+    }
+    
+    //NSLog(@"Inner: %@", [titleArray objectAtIndex:0]);
 }
 
 - (NSInteger*) addBook: (Book*) bk{

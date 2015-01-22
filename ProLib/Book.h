@@ -16,7 +16,9 @@
 @property NSString *author;
 @property NSString *lastCheckedOut;
 @property NSString *lastCheckedOutBy;
-
-@property NSMutableArray *categories;
+@property NSString *publisher;
+@property NSString *url;
+@property NSString *categories;
+@property NSInteger *id;
 
 @end
