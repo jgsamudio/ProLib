@@ -22,5 +22,8 @@
 
 
 @property NSMutableArray *bookList;
+@property Book * sharedBook;
+
++ (Library *) sharedSingleton;
 
 @end

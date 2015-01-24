@@ -7,6 +7,10 @@
 //
 
 #import "LibraryTableViewController.h"
+#import "ViewController.h"
+#import "Library.h"
+
+Book *sharedBook;//global variable
 
 @interface LibraryTableViewController ()
 
@@ -23,7 +27,7 @@
     self.catalog = [[Library alloc] init];
     
     //Display an Edit button in the navigation bar for this view controller.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    //self.navigationItem.leftBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,15 +68,24 @@
     //NSLog(@"didSelectRowAtIndexPath");
     /*UIAlertView *messageAlert = [[UIAlertView alloc]
      initWithTitle:@"Row Selected" message:@"You've selected a row" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];*/
-    UIAlertView *messageAlert = [[UIAlertView alloc]
-                                 initWithTitle:@"Row Selected" message: @"Clicked Message" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    //UIAlertView *messageAlert = [[UIAlertView alloc]
+      //                           initWithTitle:@"Row Selected" message: @"Clicked Message" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     
     // Display the Hello World Message
-    [messageAlert show];
+    //[messageAlert show];
     
     // Checked the selected row
     //UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
    // cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    
+    
+    //Assign the singleton variable value
+    sharedBook = [self.catalog.bookList objectAtIndex:indexPath.row];
+    
+    Library *sharedLib = [Library sharedSingleton];
+    sharedLib.sharedBook = sharedBook;
+    
+    [self performSegueWithIdentifier: @"ViewBook" sender:tableView];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

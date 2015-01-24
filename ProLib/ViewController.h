@@ -10,6 +10,10 @@
 
 @interface ViewController : UIViewController
 
+@property NSMutableArray * googleReponseArray;
+
+@property (weak, nonatomic) IBOutlet UIImageView *bookImage;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *shareButton;
 
 @end
 

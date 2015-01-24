@@ -10,14 +10,16 @@
 
 @implementation Library
 
--(id) init{
-    self = [super init];
-    NSLog(@"Library Init");
-    
-    self.bookList = [[NSMutableArray alloc] init];
-    
-    [self loadCatalog];
+static Library *sharedLib = NULL;
 
+-(id) init{
+    if (self = [super init]) {
+        NSLog(@"Library Init");
+    
+        self.bookList = [[NSMutableArray alloc] init];
+        self.sharedBook = [[Book alloc] init];
+        [self loadCatalog];
+    }
     return self;
 }
 
@@ -69,6 +71,17 @@
     //NSLog(@"Inner: %@", [titleArray objectAtIndex:0]);
 }
 
+
++ (Library *) sharedSingleton{
+    @synchronized(sharedLib){
+        if( !sharedLib || sharedLib == NULL){
+            sharedLib = [[Library alloc] init];
+        }
+    }
+    return sharedLib;
+}
+
+
 - (NSInteger*) addBook: (Book*) bk{
     NSInteger* status = 0;
     return status;
@@ -93,7 +106,5 @@
     NSInteger* status = 0;
     return status;
 }
-
-
 
 @end

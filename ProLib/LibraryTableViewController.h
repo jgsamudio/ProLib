@@ -10,6 +10,8 @@
 #import "Library.h"
 #import "LibraryCell.h"
 
+extern Book *sharedBook;
+
 @interface LibraryTableViewController : UITableViewController
 
 @property Library *catalog;
