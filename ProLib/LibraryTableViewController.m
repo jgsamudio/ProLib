@@ -11,6 +11,7 @@
 #import "Library.h"
 
 Book *sharedBook;//global variable
+NSMutableArray *sharedLibrary;
 
 @interface LibraryTableViewController ()
 
@@ -61,6 +62,16 @@ Book *sharedBook;//global variable
     cell.bookAuthors.text = bk.author;
     
     return cell;
+}
+
+- (IBAction)addBook:(id)sender {
+    
+    sharedLibrary = self.catalog.bookList;
+    
+    Library *sharedLib = [Library sharedSingleton];
+    sharedLib.bookList = sharedLibrary;
+    
+    [self performSegueWithIdentifier: @"addBookSegue" sender:sender];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

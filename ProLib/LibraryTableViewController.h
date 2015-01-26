@@ -11,6 +11,7 @@
 #import "LibraryCell.h"
 
 extern Book *sharedBook;
+extern NSMutableArray *sharedLibrary;
 
 @interface LibraryTableViewController : UITableViewController
 

@@ -24,4 +24,6 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *addTable;
 
+@property (weak, nonatomic) IBOutlet UITextField *categoryField;
+
 @end

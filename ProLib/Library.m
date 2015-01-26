@@ -55,15 +55,28 @@ static Library *sharedLib = NULL;
     NSArray *pubArray = [dictionary valueForKey:@"publisher"];
     NSArray *urlArray = [dictionary valueForKey:@"url"];
     NSArray *catArray = [dictionary valueForKey:@"categories"];
-    NSArray *idArray = [dictionary valueForKey:@"id"];
+    //NSArray *idArray = [dictionary valueForKey:@"id"];
     
+     NSLog(@"JSON DIct: %@", pubArray);
+    NSLog(@"JSON DIct: %@", NULL);
     for(int i = 0; i < [titleArray count]; i++){
     
         Book* tempBook = [[Book alloc] init];
-        NSString * title = [titleArray objectAtIndex:i];
-        NSString * author = [authorArray objectAtIndex:i];
-        tempBook.title = title;
-        tempBook.author = author;
+        tempBook.title = [titleArray objectAtIndex:i];
+        tempBook.author = [authorArray objectAtIndex:i];
+        
+        if([pubArray objectAtIndex:i] != [NSNull null]){ tempBook.publisher = [pubArray objectAtIndex:i];}
+        else { tempBook.publisher = @"None"; }
+        
+        if([lastCheckedArray objectAtIndex:i] != [NSNull null]){ tempBook.lastCheckedOut = [lastCheckedArray objectAtIndex:i]; }
+        else { tempBook.lastCheckedOut = @"Never"; }
+        
+        if([lastCheckedByArray objectAtIndex:i] != [NSNull null]){ tempBook.lastCheckedOutBy = [lastCheckedByArray objectAtIndex:i]; }
+        else { tempBook.lastCheckedOutBy = @"Never"; }
+        
+        tempBook.url = [urlArray objectAtIndex:i];
+        tempBook.categories = [catArray objectAtIndex:i];
+        //tempBook.id = (NSInteger)[idArray objectAtIndex:i];
         
         [self.bookList addObject:tempBook];
     }

@@ -21,27 +21,27 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.googleReponseArray = [[NSMutableArray alloc] init];
     
-    
     NSString * title = [sharedBook.title stringByReplacingOccurrencesOfString:@" " withString:@"_"];
     [self getGoogleImagesForQuery:title withPage:1];
     
-    
     NSLog(@"Library Title: %@", sharedBook.title);
     
-}
-
-- (NSString*) titleToURLString:(NSString *) title{
-
+    self.titleLabel.text = sharedBook.title;
+    self.authorTitle.text = sharedBook.author;
+    self.pubLabel.text = sharedBook.publisher;
+    self.catLabel.text = sharedBook.categories;
     
-    return title;
+    if([sharedBook.lastCheckedOutBy  isEqual: @"Never"]){self.checkedLabel.text = @"Never";}
+    else
+    {self.checkedLabel.text = [NSString stringWithFormat:@"%@ at %@", sharedBook.lastCheckedOutBy, sharedBook.lastCheckedOut];}
 }
 
-
+//Query and set first Google Image to UImage
 - (void)getGoogleImagesForQuery:(NSString*)query withPage:(int)page
 {
     @try{
         
-        int firstImageNumber = page * 6;
+        int firstImageNumber = 1;
         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:
                                            @"https://ajax.googleapis.com/ajax/services/search/images?v=1.0&rsz=6&q=%@&start=%i&&imgsz=medium",query, firstImageNumber]];
         
@@ -64,19 +64,42 @@
         NSURL * imageURL = [NSURL URLWithString:[resultArray objectAtIndex:0]];
         NSLog(@"Request is %@",imageURL);
         NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
-        
-        UIImage * image = [UIImage imageWithData:imageData];
-        self.bookImage.image = image;
-        //[self.bookImage setImage:image];
-        
+        if(imageData != NULL){
+            UIImage * image = [UIImage imageWithData:imageData];
+            self.bookImage.image = image;
+        }
     }
     @catch (NSException *ex) {
         NSLog(@"Exception %@",ex);
     }
 }
+
+//Alert Message to User Name
+- (IBAction)checkOutAction:(id)sender {
+    
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Hello!" message:@"Please enter your name:" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    UITextField * alertTextField = [alert textFieldAtIndex:0];
+    alertTextField.keyboardType = UIKeyboardTypeNumberPad;
+    alertTextField.placeholder = @"Enter your name";
+    [alert show];
+}
+
+
+//Handle AlertView Button Press
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"View Book Controller: Checkout Book");
+    NSString * name = [[alertView textFieldAtIndex:0] text];
+    NSLog(@"Name: %@", name);
+    
+    
+}
+
+//Share with Activities: Facebook, Twitter, Email, etc
 - (IBAction)showActivityView:(id)sender {
     
-    NSString * shareText = @"HELLO";
+    NSString * shareText = [NSString stringWithFormat:@"I'm reading %@ by %@!", sharedBook.title, sharedBook.author];
     NSArray *itemsToShare = @[shareText];
     
     UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];

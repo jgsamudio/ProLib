@@ -14,6 +14,12 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *bookImage;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *shareButton;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *authorTitle;
+@property (weak, nonatomic) IBOutlet UILabel *pubLabel;
+@property (weak, nonatomic) IBOutlet UILabel *catLabel;
+@property (weak, nonatomic) IBOutlet UILabel *checkedLabel;
+@property (weak, nonatomic) IBOutlet UIButton *checkoutButton;
 
 @end
 
