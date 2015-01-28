@@ -43,17 +43,7 @@ NSMutableArray *sharedLibrary;
 
 }
 
--(void)viewDidAppear:(BOOL)animated {
-
-    [_spinner startAnimating];
-    
-    NSLog(@"LibraryTableViewController: viewDidAppear");
-    [self.catalog loadCatalog];
-    NSLog(@"LibraryTableViewController: %lu", self.catalog.bookList.count);
-    [self.tableView reloadData];
-    
-    [_spinner stopAnimating];
-}
+-(void)viewDidAppear:(BOOL)animated { [self.tableView reloadData]; }
 
 - (void)refreshInvoked
 {
@@ -123,11 +113,34 @@ NSMutableArray *sharedLibrary;
 }
 
 - (IBAction)clearAllBooks:(id)sender {
-    [self.catalog clearCatalog];
-    [self.tableView reloadData];
+    
+    UIAlertView *messageAlert = [[UIAlertView alloc] initWithTitle:@"Clear Library?"
+                                                           message: @"Warning! This action can't be undone" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Clear", nil];
+    [messageAlert show];
+}
+
+//Handle AlertView Button Press
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == 1){
+        NSLog(@"LibraryTableViewController: Clear Button Pressed");
+        [self.catalog clearCatalog];
+        [self.tableView reloadData];
+    }
+    else{
+        NSLog(@"LibraryTableViewController: Cancel Button Pressed");
+    }
 }
 
 -(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue {
+    [_spinner startAnimating];
+    
+    NSLog(@"LibraryTableViewController: prepareForUnwind");
+    [self.catalog loadCatalog];
+    NSLog(@"LibraryTableViewController: %lu", self.catalog.bookList.count);
+    [self.tableView reloadData];
+    
+    [_spinner stopAnimating];
 }
 
 @end

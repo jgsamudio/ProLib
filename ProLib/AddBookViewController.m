@@ -76,7 +76,7 @@
         [sharedLib addBook:bookToAdd];
         
         //GO BACK TO LIBRARY TABLE VIEW
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [self performSegueWithIdentifier:@"exitToLibrarySegue" sender:self];
     }
 }
 

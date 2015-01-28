@@ -46,6 +46,7 @@
             ![sharedBook.publisher isEqual:self.publisherField.text] ||
               ![sharedBook.categories isEqual:self.authorField.text] ) {
     
+        //APPLY CHANGES TO BOOK DETAIL VIEW
         sharedBook.title = self.titleField.text;
         sharedBook.author = self.authorField.text;
         sharedBook.publisher = self.publisherField.text;
