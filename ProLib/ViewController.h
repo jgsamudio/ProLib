@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <UINavigationControllerDelegate>
 
 @property NSMutableArray * googleReponseArray;
 
@@ -20,6 +20,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *catLabel;
 @property (weak, nonatomic) IBOutlet UILabel *checkedLabel;
 @property (weak, nonatomic) IBOutlet UIButton *checkoutButton;
+@property (weak, nonatomic) IBOutlet UIView *contentView;
+
+@property (strong, nonatomic) UIActivityIndicatorView *spinner;
+@property (strong, nonatomic) NSData *imageData;
+
+- (IBAction)editButton:(id)sender;
+
 
 @end
 

@@ -29,7 +29,7 @@
 - (IBAction)doneBook:(id)sender {
     NSLog(@"AddBookController: Done Pressed!");
     if(![self.titleField.text  isEqual: @""] || ![self.authorField.text  isEqual: @""]
-       || ![self.publisherField.text  isEqual: @""]){
+       || ![self.publisherField.text  isEqual: @""] || ![self.categoryField.text isEqual:@""]){
         
         UIAlertView *messageAlert = [[UIAlertView alloc] initWithTitle:@"Discard Information?"
                                                                message: @"Are you sure you want to discard your information?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
@@ -72,7 +72,7 @@
         
         NSLog(@"DICT: %@", dict);
         
-        //PREPARE JSON STRING
+        //PREPARE JSON DATA
         NSError *error;
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:&error];
         
@@ -94,7 +94,23 @@
                 NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
                 NSLog(@"Response DICT: %@", dictionary);
                 
-                //
+                Book * bookToAdd = [[Book alloc] init];
+                bookToAdd.author = [dictionary valueForKey:@"author"];
+                bookToAdd.categories = [dictionary valueForKey:@"categories"];
+                bookToAdd.id = [[dictionary valueForKey:@"id"]integerValue];
+                bookToAdd.lastCheckedOut = [dictionary valueForKey:@"lastCheckedOut"];
+                bookToAdd.lastCheckedOutBy = [dictionary valueForKey:@"lastCheckedOutBy"];
+                bookToAdd.publisher = [dictionary valueForKey:@"publisher"];
+                bookToAdd.title = [dictionary valueForKey:@"title"];
+                bookToAdd.url = [dictionary valueForKey:@"url"];
+                
+                [sharedLibrary addObject:bookToAdd];
+                
+                Library *sharedLib = [Library sharedSingleton];
+                sharedLib.bookList = sharedLibrary;
+            
+                //GO BACK TO LIBRARY TABLE VIEW
+                [self dismissViewControllerAnimated:YES completion:nil];
             }
             
         }];

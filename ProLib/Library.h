@@ -16,8 +16,6 @@
 
 - (NSInteger*) addBook:(Book*) bk;
 - (Book*) getBook: (NSInteger*) bkPos;
-- (NSInteger*) updateBook: (Book*) bk;
-- (NSInteger*) removeBook: (NSInteger*) bkPos;
 - (NSInteger*) clearCatalog;
 
 

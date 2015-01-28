@@ -19,6 +19,9 @@
 @property NSString *publisher;
 @property NSString *url;
 @property NSString *categories;
-@property NSInteger *id;
+@property NSInteger id;
+
+- (NSInteger) updateBook: (NSDictionary*) jsonDict;
+- (NSInteger) deleteBook;
 
 @end

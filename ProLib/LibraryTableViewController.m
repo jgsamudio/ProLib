@@ -28,7 +28,43 @@ NSMutableArray *sharedLibrary;
     self.catalog = [[Library alloc] init];
     
     //Display an Edit button in the navigation bar for this view controller.
-    //self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+
+    [self.refreshControl addTarget:self
+                           action:@selector(refreshInvoked)
+                  forControlEvents:UIControlEventValueChanged];
+    
+    CGPoint centerOffset = self.view.center;
+    centerOffset.y -= 50;
+    
+    _spinner= [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, 50, 50)];
+    _spinner.layer.cornerRadius = 05;
+    _spinner.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.6f];
+    _spinner.center = centerOffset;
+    _spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
+    [self.view addSubview: _spinner];
+
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+
+    [_spinner startAnimating];
+    
+    NSLog(@"LibraryTableViewController: viewDidAppear");
+    [self.catalog loadCatalog];
+    NSLog(@"LibraryTableViewController: %lu", self.catalog.bookList.count);
+    [self.tableView reloadData];
+    
+    [_spinner stopAnimating];
+}
+
+- (void)refreshInvoked
+{
+    //Refresh Invoked
+    NSLog(@"LibraryTableViewController: Refresh Invoked");
+    [self.catalog loadCatalog];
+    [self.tableView reloadData];
+    [self.refreshControl endRefreshing];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -76,19 +112,7 @@ NSMutableArray *sharedLibrary;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //NSLog(@"didSelectRowAtIndexPath");
-    /*UIAlertView *messageAlert = [[UIAlertView alloc]
-     initWithTitle:@"Row Selected" message:@"You've selected a row" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];*/
-    //UIAlertView *messageAlert = [[UIAlertView alloc]
-      //                           initWithTitle:@"Row Selected" message: @"Clicked Message" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    
-    // Display the Hello World Message
-    //[messageAlert show];
-    
-    // Checked the selected row
-    //UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-   // cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    
+    NSLog(@"didSelectRowAtIndexPath");
     
     //Assign the singleton variable value
     sharedBook = [self.catalog.bookList objectAtIndex:indexPath.row];
@@ -96,9 +120,14 @@ NSMutableArray *sharedLibrary;
     Library *sharedLib = [Library sharedSingleton];
     sharedLib.sharedBook = sharedBook;
     
+    
+    
     [self performSegueWithIdentifier: @"ViewBook" sender:tableView];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+-(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue {
 }
 
 @end

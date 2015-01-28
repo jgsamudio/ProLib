@@ -13,8 +13,10 @@
 extern Book *sharedBook;
 extern NSMutableArray *sharedLibrary;
 
-@interface LibraryTableViewController : UITableViewController
+@interface LibraryTableViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property Library *catalog;
+
+@property (strong, nonatomic) UIActivityIndicatorView *spinner;
 
 @end

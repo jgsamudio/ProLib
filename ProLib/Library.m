@@ -31,6 +31,13 @@ static Library *sharedLib = NULL;
 
 - (void) loadCatalog{
     
+    //Check for deleted books
+    for(int i = 0; i < [self.bookList count]; i++){
+        if([[[self.bookList objectAtIndex:i] title] isEqualToString:@""]){
+            [self.bookList removeObjectAtIndex:i];
+        }
+    }
+    
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:@"http://prolific-interview.herokuapp.com/54bd1bd34fb6c2000805208a/books"]];
     [request setHTTPMethod:@"GET"];
@@ -39,14 +46,10 @@ static Library *sharedLib = NULL;
     NSURLResponse *requestResponse;
     NSData *requestHandler = [NSURLConnection sendSynchronousRequest:request returningResponse:&requestResponse error:nil];
     
-    NSString *requestReply = [[NSString alloc] initWithBytes:[requestHandler bytes] length:[requestHandler length] encoding:NSASCIIStringEncoding];
-    NSLog(@"requestReply: %@", requestReply);
-    
-    
     NSError *jsonError;
     NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:requestHandler options:kNilOptions error:&jsonError];
     
-    NSLog(@"JSON DIct: %@", dictionary);
+    NSLog(@"JSON DICT: %@", dictionary);
     
     NSArray *titleArray = [dictionary valueForKey:@"title"];
     NSArray *authorArray = [dictionary valueForKey:@"author"];
@@ -55,35 +58,36 @@ static Library *sharedLib = NULL;
     NSArray *pubArray = [dictionary valueForKey:@"publisher"];
     NSArray *urlArray = [dictionary valueForKey:@"url"];
     NSArray *catArray = [dictionary valueForKey:@"categories"];
-    //NSArray *idArray = [dictionary valueForKey:@"id"];
+    NSArray *idArray = [dictionary valueForKey:@"id"];
     
-     NSLog(@"JSON DIct: %@", pubArray);
-    NSLog(@"JSON DIct: %@", NULL);
     for(int i = 0; i < [titleArray count]; i++){
     
-        Book* tempBook = [[Book alloc] init];
-        tempBook.title = [titleArray objectAtIndex:i];
-        tempBook.author = [authorArray objectAtIndex:i];
+        NSInteger tempId = [[idArray objectAtIndex:i]integerValue];
         
-        if([pubArray objectAtIndex:i] != [NSNull null]){ tempBook.publisher = [pubArray objectAtIndex:i];}
-        else { tempBook.publisher = @"None"; }
+        if(![self isIdFound:tempId]) {
         
-        if([lastCheckedArray objectAtIndex:i] != [NSNull null]){ tempBook.lastCheckedOut = [lastCheckedArray objectAtIndex:i]; }
-        else { tempBook.lastCheckedOut = @"Never"; }
+            Book* tempBook = [[Book alloc] init];
+            tempBook.title = [titleArray objectAtIndex:i];
+            tempBook.author = [authorArray objectAtIndex:i];
         
-        if([lastCheckedByArray objectAtIndex:i] != [NSNull null]){ tempBook.lastCheckedOutBy = [lastCheckedByArray objectAtIndex:i]; }
-        else { tempBook.lastCheckedOutBy = @"Never"; }
+            if([pubArray objectAtIndex:i] != [NSNull null]){ tempBook.publisher = [pubArray objectAtIndex:i];}
+            else { tempBook.publisher = @"None"; }
         
-        tempBook.url = [urlArray objectAtIndex:i];
-        tempBook.categories = [catArray objectAtIndex:i];
-        //tempBook.id = (NSInteger)[idArray objectAtIndex:i];
+            if([lastCheckedArray objectAtIndex:i] != [NSNull null]){ tempBook.lastCheckedOut = [lastCheckedArray objectAtIndex:i]; }
+            else { tempBook.lastCheckedOut = @"Never"; }
+            
+            if([lastCheckedByArray objectAtIndex:i] != [NSNull null]){ tempBook.lastCheckedOutBy = [lastCheckedByArray objectAtIndex:i]; }
+            else { tempBook.lastCheckedOutBy = @"Never"; }
         
-        [self.bookList addObject:tempBook];
+            tempBook.url = [urlArray objectAtIndex:i];
+            tempBook.categories = [catArray objectAtIndex:i];
+            tempBook.id = tempId;
+            [self.bookList addObject:tempBook];
+        }
     }
     
-    //NSLog(@"Inner: %@", [titleArray objectAtIndex:0]);
+    NSLog(@"CATALOG: %lu", self.bookList.count);
 }
-
 
 + (Library *) sharedSingleton{
     @synchronized(sharedLib){
@@ -105,19 +109,17 @@ static Library *sharedLib = NULL;
     return takeBook;
 }
 
-- (NSInteger*) updateBook: (Book*) bk{
-    NSInteger* status = 0;
-    return status;
-}
-
-- (NSInteger*) removeBook: (NSInteger*) bkPos{
-    NSInteger* status = 0;
-    return status;
-}
-
 - (NSInteger*) clearCatalog{
     NSInteger* status = 0;
     return status;
+}
+
+- (BOOL) isIdFound:(NSInteger) cmpId{
+    
+    for(int i = 0; i < [self.bookList count]; i++){
+        if([[self.bookList objectAtIndex:i] id] == cmpId){ return TRUE; }
+    }
+    return FALSE;
 }
 
 @end
