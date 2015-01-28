@@ -11,6 +11,9 @@
 @implementation Book
 
 NSInteger status = 0;
+NSString * dateServerFormat = @"yyyy-MM-dd HH:mm:ss";
+NSString * dateUIFormat = @"MMMM dd, yyyy";
+NSString * timeUIFormat = @"h:mm a";
 
 -(id)init
 {
@@ -18,7 +21,7 @@ NSInteger status = 0;
 }
 
 
-- (NSInteger) updateBook: (NSDictionary*) jsonDict{
+- (void) updateBook: (NSDictionary*) jsonDict{
 
     NSLog(@"DICT: %@", jsonDict);
     
@@ -45,23 +48,11 @@ NSInteger status = 0;
         } else {
             NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
             NSLog(@"ResponseDict: %@", responseDict);
-            
-            //UPDATE BOOK VARIABLES FROM RESPONSE
-            self.author = [responseDict valueForKey:@"author"];
-            self.categories = [responseDict valueForKey:@"categories"];
-            self.id = [[responseDict valueForKey:@"id"]integerValue];
-            self.lastCheckedOut = [responseDict valueForKey:@"lastCheckedOut"];
-            self.lastCheckedOutBy = [responseDict valueForKey:@"lastCheckedOutBy"];
-            self.publisher = [responseDict valueForKey:@"publisher"];
-            self.title = [responseDict valueForKey:@"title"];
-            self.url = [responseDict valueForKey:@"url"];
         }
     }];
-    
-    return status;
 }
 
-- (NSInteger) deleteBook{
+- (void) deleteBook{
     
     //REQUEST
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
@@ -84,11 +75,61 @@ NSInteger status = 0;
             NSLog(@"SUCCESSFUL DELETE");
         }
     }];
-    
-    
-    return status;
 }
 
+- (NSString *) getLastCheckOutTime{
+    
+    if([self.lastCheckedOutBy  isEqual: @"Never"] || [self.lastCheckedOutBy isEqual:@""]){ return @"Never"; }
+    else{
+    
+        NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:dateServerFormat];
+        [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+        
+        NSDate *date = [dateFormatter dateFromString: self.lastCheckedOut];
+    
+        dateFormatter = [[NSDateFormatter alloc] init];
+    
+        [dateFormatter setDateFormat:timeUIFormat];
+        [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"EST"]];
+        NSString *timeUIString = [dateFormatter stringFromDate:date];
+    
+        [dateFormatter setDateFormat:dateUIFormat];
+        NSString *dateUIString = [dateFormatter stringFromDate:date];
+    
+        NSString * convertedString = [NSString stringWithFormat:@"%@ at %@ on %@",
+                                  self.lastCheckedOutBy, timeUIString, dateUIString];
+    
+        NSLog(@"LastCheckedOutBy : %@",convertedString);
+        return convertedString;
+    }
+}
 
+- (void) updateLastCheckOutTime:(NSString*) name {
+    
+    //CALC SERVER TIME
+    NSString * serverTime = [self getDateString:dateServerFormat];
+    
+    //UPDATE BOOK VARIABLES
+    self.lastCheckedOut = serverTime;
+    self.lastCheckedOutBy = name;
+    
+    //PREP JSON DICTIONARY CONTAINER
+    NSDictionary *jsonDict = [[NSDictionary alloc]initWithObjectsAndKeys:
+                              name, @"lastCheckedOutBy", serverTime, @"lastCheckedOut", nil];
+    
+    //UPDATE BOOK ON SERVER
+    [self updateBook:jsonDict];
+}
+
+- (NSString *) getDateString:(NSString*) dateFormatString{
+    NSDate *today = [NSDate date];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:dateFormatString];
+    [dateFormat setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+    NSString *dateString = [dateFormat stringFromDate:today];
+    NSLog(@"date: %@", dateString);
+    return dateString;
+}
 
 @end

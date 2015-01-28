@@ -34,8 +34,8 @@ static Library *sharedLib = NULL;
     //Check for deleted books
     for(int i = 0; i < [self.bookList count]; i++){
         if([[[self.bookList objectAtIndex:i] title] isEqualToString:@""]){
-            [self.bookList removeObjectAtIndex:i];
-        }
+           [self.bookList removeObjectAtIndex:i];
+       }
     }
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
@@ -99,19 +99,69 @@ static Library *sharedLib = NULL;
 }
 
 
-- (NSInteger*) addBook: (Book*) bk{
-    NSInteger* status = 0;
-    return status;
+- (void) addBook: (Book*) bk{
+    
+    [self.bookList addObject:bk];
+    //PREP DICTIONARY CONTAINER
+ 
+    NSDictionary *jsonDict = [[NSDictionary alloc]initWithObjectsAndKeys:
+                              bk.title , @"title", bk.publisher, @"publisher",
+                              bk.lastCheckedOutBy, @"lastCheckedOutBy",
+                              bk.categories, @"categories", bk.author, @"author", nil];
+    
+    NSLog(@"DICT: %@", jsonDict);
+    
+    //PREPARE JSON DATA
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDict options:NSJSONWritingPrettyPrinted error:&error];
+    
+    //REQUEST
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:@"http://prolific-interview.herokuapp.com/54bd1bd34fb6c2000805208a/books/"]];
+    [request setHTTPMethod:@"POST"];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:jsonData];
+    
+    //HANDLE RESPONSE
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        if (error) {
+            NSLog(@"Error!");
+        } else {
+            NSString *responseText = [[NSString alloc] initWithData:data encoding: NSASCIIStringEncoding];
+            NSLog(@"Response: %@", responseText);
+            
+            NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+            NSLog(@"Response DICT: %@", dictionary);
+            
+            bk.id = [[dictionary valueForKey:@"id"] integerValue];
+            bk.url = [dictionary valueForKey:@"url"];
+        }
+    }];
 }
 
-- (Book*) getBook: (NSInteger*) bkPos{
-    Book* takeBook;
-    return takeBook;
-}
-
-- (NSInteger*) clearCatalog{
-    NSInteger* status = 0;
-    return status;
+- (void) clearCatalog{
+    //REQUEST
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    NSString * url = @"http://prolific-interview.herokuapp.com/54bd1bd34fb6c2000805208a/clean";
+    
+    self.bookList = [[NSMutableArray alloc] init];
+    self.sharedBook = [[Book alloc] init];
+    
+    
+    NSLog(@"DELETE URL: %@", url);
+    
+    [request setURL:[NSURL URLWithString:url]];
+    [request setHTTPMethod:@"DELETE"];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    //HANDLE RESPONSE
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        if (error) {
+            NSLog(@"Error!");
+        } else {
+            NSLog(@"SUCCESSFUL DELETE");
+        }
+    }];
 }
 
 - (BOOL) isIdFound:(NSInteger) cmpId{

@@ -42,10 +42,8 @@
     self.authorTitle.text = sharedBook.author;
     self.pubLabel.text = sharedBook.publisher;
     self.catLabel.text = sharedBook.categories;
+    self.checkedLabel.text = [sharedBook getLastCheckOutTime];
     
-    if([sharedBook.lastCheckedOutBy  isEqual: @"Never"]){self.checkedLabel.text = @"Never";}
-    else
-    {self.checkedLabel.text = [NSString stringWithFormat:@"%@ at %@", sharedBook.lastCheckedOutBy, sharedBook.lastCheckedOut];}
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -79,23 +77,17 @@
             NSLog(@"url is %@",url);
             
             NSURLRequest *request = [NSURLRequest requestWithURL:url];
-            NSLog(@"Request is %@",request);
             
             NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
             NSError *error;
             
             NSDictionary *responseDic = [NSJSONSerialization JSONObjectWithData: responseData options:kNilOptions error:&error];
             
-            NSLog(@"JSON DIct: %@", responseDic);
             
             NSArray *resultArray = [[[responseDic objectForKey:@"responseData"] objectForKey:@"results"] valueForKey:@"url"];
-            NSLog(@"JSON URL: %@", resultArray);
-            
             
             NSURL * imageURL = [NSURL URLWithString:[resultArray objectAtIndex:0]];
             NSLog(@"Request is %@",imageURL);
-            
-            
             
             for(int i = 0; i < [resultArray count]; i++){
                 _imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[resultArray objectAtIndex:i]]];
@@ -138,18 +130,11 @@
         NSString * name = [[alertView textFieldAtIndex:0] text];
         NSLog(@"Name: %@", name);
     
-        //PREP JSON DICTIONARY CONTAINER
-        NSDictionary *jsonDict = [[NSDictionary alloc]initWithObjectsAndKeys:
-                          name, @"lastCheckedOutBy",nil];
-    
-        if([sharedBook updateBook:jsonDict] == 0){
-            //UPDATE "LAST CHECKED OUT BY" TEXTFIELD
-            NSLog(@"UPDATE COMPLETE");
-            self.checkedLabel.text = [NSString stringWithFormat:@"%@ at %@",
-                                  sharedBook.lastCheckedOutBy, sharedBook.lastCheckedOut];
-        }
-    
-        [self performSegueWithIdentifier:@"exitToLibrarySegue" sender:self];
+        //UPDATE LAST CHECKOUT TIME AND SEND TO SERVER
+        [sharedBook updateLastCheckOutTime:name];
+        
+        //UPDATE "LAST CHECKED OUT BY" TEXTFIELD
+        self.checkedLabel.text = [sharedBook getLastCheckOutTime];
     }
 }
 

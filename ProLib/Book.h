@@ -21,7 +21,11 @@
 @property NSString *categories;
 @property NSInteger id;
 
-- (NSInteger) updateBook: (NSDictionary*) jsonDict;
-- (NSInteger) deleteBook;
+- (void) updateBook: (NSDictionary*) jsonDict;
+- (void) deleteBook;
+
+- (NSString *) getLastCheckOutTime;
+- (void) updateLastCheckOutTime: (NSString*) name;
+- (NSString *) getDateString:(NSString*) dateFormatString;
 
 @end

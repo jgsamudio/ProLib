@@ -14,10 +14,8 @@
 - (void) printCatalog;
 - (void) loadCatalog;
 
-- (NSInteger*) addBook:(Book*) bk;
-- (Book*) getBook: (NSInteger*) bkPos;
-- (NSInteger*) clearCatalog;
-
+- (void) addBook:(Book*) bk;
+- (void) clearCatalog;
 
 @property NSMutableArray *bookList;
 @property Book * sharedBook;

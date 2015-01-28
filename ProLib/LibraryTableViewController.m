@@ -26,9 +26,6 @@ NSMutableArray *sharedLibrary;
     
     //Initialize Library Object
     self.catalog = [[Library alloc] init];
-    
-    //Display an Edit button in the navigation bar for this view controller.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
     [self.refreshControl addTarget:self
                            action:@selector(refreshInvoked)
@@ -120,11 +117,14 @@ NSMutableArray *sharedLibrary;
     Library *sharedLib = [Library sharedSingleton];
     sharedLib.sharedBook = sharedBook;
     
-    
-    
     [self performSegueWithIdentifier: @"ViewBook" sender:tableView];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (IBAction)clearAllBooks:(id)sender {
+    [self.catalog clearCatalog];
+    [self.tableView reloadData];
 }
 
 -(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue {

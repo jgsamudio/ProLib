@@ -56,64 +56,27 @@
     
     //Check if fields are blank
     if([self.titleField.text  isEqual: @""] || [self.authorField.text  isEqual: @""]
-       || [self.publisherField.text  isEqual: @""]){
+       || [self.publisherField.text isEqual: @""] || [self.categoryField.text isEqual: @""]){
         
         UIAlertView *messageAlert = [[UIAlertView alloc] initWithTitle:@"Fields Left Blank!"
                                     message: @"Please fill in all fields!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [messageAlert show];
     }
     else {//Add Book to Library
+
         
-        //PREP DICTIONARY CONTAINER
-        NSDictionary *dict = [[NSDictionary alloc]initWithObjectsAndKeys:
-                              self.titleField.text, @"title", self.publisherField.text, @"publisher",
-                              @"Joe", @"lastCheckedOutBy", self.categoryField.text, @"categories",
-                              self.authorField.text, @"author", nil];
+        Book * bookToAdd = [[Book alloc] init];
+        bookToAdd.author = self.authorField.text;
+        bookToAdd.categories = self.categoryField.text;
+        bookToAdd.lastCheckedOutBy = @"";
+        bookToAdd.publisher = self.publisherField.text;
+        bookToAdd.title = self.titleField.text;
         
-        NSLog(@"DICT: %@", dict);
+        Library *sharedLib = [Library sharedSingleton];
+        [sharedLib addBook:bookToAdd];
         
-        //PREPARE JSON DATA
-        NSError *error;
-        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:&error];
-        
-        //REQUEST
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-        [request setURL:[NSURL URLWithString:@"http://prolific-interview.herokuapp.com/54bd1bd34fb6c2000805208a/books/"]];
-        [request setHTTPMethod:@"POST"];
-        [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        [request setHTTPBody:jsonData];
-        
-        //HANDLE RESPONSE
-        [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-            if (error) {
-                NSLog(@"Error!");
-            } else {
-                NSString *responseText = [[NSString alloc] initWithData:data encoding: NSASCIIStringEncoding];
-                NSLog(@"Response: %@", responseText);
-                
-                NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-                NSLog(@"Response DICT: %@", dictionary);
-                
-                Book * bookToAdd = [[Book alloc] init];
-                bookToAdd.author = [dictionary valueForKey:@"author"];
-                bookToAdd.categories = [dictionary valueForKey:@"categories"];
-                bookToAdd.id = [[dictionary valueForKey:@"id"]integerValue];
-                bookToAdd.lastCheckedOut = [dictionary valueForKey:@"lastCheckedOut"];
-                bookToAdd.lastCheckedOutBy = [dictionary valueForKey:@"lastCheckedOutBy"];
-                bookToAdd.publisher = [dictionary valueForKey:@"publisher"];
-                bookToAdd.title = [dictionary valueForKey:@"title"];
-                bookToAdd.url = [dictionary valueForKey:@"url"];
-                
-                [sharedLibrary addObject:bookToAdd];
-                
-                Library *sharedLib = [Library sharedSingleton];
-                sharedLib.bookList = sharedLibrary;
-            
-                //GO BACK TO LIBRARY TABLE VIEW
-                [self dismissViewControllerAnimated:YES completion:nil];
-            }
-            
-        }];
+        //GO BACK TO LIBRARY TABLE VIEW
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 

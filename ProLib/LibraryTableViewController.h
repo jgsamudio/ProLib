@@ -19,4 +19,5 @@ extern NSMutableArray *sharedLibrary;
 
 @property (strong, nonatomic) UIActivityIndicatorView *spinner;
 
+- (IBAction)clearAllBooks:(id)sender;
 @end
