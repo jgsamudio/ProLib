@@ -10,14 +10,19 @@
 #import "Library.h"
 #import "LibraryCell.h"
 
+//GLOBALS TO SHARE WITH OTHER VIEWS
 extern Book *sharedBook;
 extern NSMutableArray *sharedLibrary;
 
 @interface LibraryTableViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
 
+//OBJECT TO CONTAIN THE ENTIRE LIBRARY
 @property Library *catalog;
 
+//SPINNER VARIABLE
 @property (strong, nonatomic) UIActivityIndicatorView *spinner;
 
+//DELETE ALL BOOKS
 - (IBAction)clearAllBooks:(id)sender;
+
 @end

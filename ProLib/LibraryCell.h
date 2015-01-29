@@ -10,6 +10,7 @@
 
 @interface LibraryCell : UITableViewCell
 
+//CUSTON TABLE CELL PROPERTIES
 @property (nonatomic, weak) IBOutlet UILabel *bookTitle;
 @property (nonatomic, weak) IBOutlet UILabel *bookAuthors;
 

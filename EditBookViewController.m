@@ -19,13 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    //Initialize textfields of book for edit
+    //INITIALIZE TEXTFIELDS WITH BOOK INFORMATION
     self.titleField.text = sharedBook.title;
     self.authorField.text = sharedBook.author;
     self.publisherField.text = sharedBook.publisher;
@@ -37,10 +31,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-
 - (IBAction)doneEditButton:(id)sender {
     
-    //Check if the user made any changes
+    //CHECK IF THE USER MADE ANY CHANGES
     if( ![sharedBook.title isEqual:self.titleField.text] ||
           ![sharedBook.author isEqual:self.authorField.text] ||
             ![sharedBook.publisher isEqual:self.publisherField.text] ||
@@ -52,7 +45,7 @@
         sharedBook.publisher = self.publisherField.text;
         sharedBook.categories = self.categoriesField.text;
     
-        //JSON Dictionary for book update
+        //JSON DICTIONARY FOR BOOK UPDATE
         NSDictionary *jsonDict = [[NSDictionary alloc]initWithObjectsAndKeys:
                               sharedBook.title, @"title", sharedBook.author, @"author",
                               sharedBook.publisher, @"publisher", sharedBook.categories, @"categories",nil];
@@ -61,6 +54,8 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+//DELETE BOOK BUTTON
+// - Prompts the user if they wish to delete book
 - (IBAction)deleteBook:(id)sender {
     NSLog(@"EditBookViewController: Delete Button Pressed!");
     UIAlertView *messageAlert = [[UIAlertView alloc] initWithTitle:@"Delete Book?"
@@ -69,7 +64,8 @@
     
 }
 
-//Handle AlertView Button Press
+//HANDLE ALERTVIEW BUTTON PRESS
+// - Segues to Library Table View
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if(buttonIndex == 1){

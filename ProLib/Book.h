@@ -8,10 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Book : NSObject {
-    
-}
+@interface Book : NSObject 
 
+//BOOK PROPERTIES
 @property NSString *title;
 @property NSString *author;
 @property NSString *lastCheckedOut;
@@ -21,9 +20,11 @@
 @property NSString *categories;
 @property NSInteger id;
 
+//BOOK SERVER FUNCTIONS
 - (void) updateBook: (NSDictionary*) jsonDict;
 - (void) deleteBook;
 
+//BOOK TIME FUNCTIONS
 - (NSString *) getLastCheckOutTime;
 - (void) updateLastCheckOutTime: (NSString*) name;
 - (NSString *) getDateString:(NSString*) dateFormatString;

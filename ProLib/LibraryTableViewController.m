@@ -10,7 +10,8 @@
 #import "ViewController.h"
 #import "Library.h"
 
-Book *sharedBook;//global variable
+//GLOBAL VARIABLES
+Book *sharedBook;
 NSMutableArray *sharedLibrary;
 
 @interface LibraryTableViewController ()
@@ -24,13 +25,15 @@ NSMutableArray *sharedLibrary;
     
     NSLog(@"LibraryTableViewController: viewDidLoad");
     
-    //Initialize Library Object
+    //INITIALIZE LIBRARY OBJECT
     self.catalog = [[Library alloc] init];
 
+    //SET REFRESH CONTROL SELECTOR FUNCTION
     [self.refreshControl addTarget:self
                            action:@selector(refreshInvoked)
                   forControlEvents:UIControlEventValueChanged];
     
+    //INITIALIZE SPINNER AND ADD TO VIEW
     CGPoint centerOffset = self.view.center;
     centerOffset.y -= 50;
     
@@ -40,14 +43,14 @@ NSMutableArray *sharedLibrary;
     _spinner.center = centerOffset;
     _spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
     [self.view addSubview: _spinner];
-
 }
 
+//RELOAD TABLE DATE ON VIEW APPEAR
 -(void)viewDidAppear:(BOOL)animated { [self.tableView reloadData]; }
 
+//PULL TO REFRESH
 - (void)refreshInvoked
 {
-    //Refresh Invoked
     NSLog(@"LibraryTableViewController: Refresh Invoked");
     [self.catalog loadCatalog];
     [self.tableView reloadData];
@@ -61,12 +64,11 @@ NSMutableArray *sharedLibrary;
 
 #pragma mark - Table view data source
 
+//DEFAULT TABLE CELL HEIGHT
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {return 70;}
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [self.catalog.bookList count];
-}
+//NUMBER OF ROWS
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{ return [self.catalog.bookList count]; }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -79,14 +81,15 @@ NSMutableArray *sharedLibrary;
         cell = [nib objectAtIndex:0];
     }
     
+    //SET TITLE AND AUTHOR FOR CELL
     Book * bk = [self.catalog.bookList objectAtIndex:indexPath.row];
-    
     cell.bookTitle.text = bk.title;
     cell.bookAuthors.text = bk.author;
     
     return cell;
 }
 
+//ADD A BOOK TO THE LIBRARY
 - (IBAction)addBook:(id)sender {
     
     sharedLibrary = self.catalog.bookList;
@@ -97,11 +100,12 @@ NSMutableArray *sharedLibrary;
     [self performSegueWithIdentifier: @"addBookSegue" sender:sender];
 }
 
+//ON TABLE CELL BOOK SELECT
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"didSelectRowAtIndexPath");
     
-    //Assign the singleton variable value
+    //ASSIGN THE SINGLETON VARIABLE
     sharedBook = [self.catalog.bookList objectAtIndex:indexPath.row];
     
     Library *sharedLib = [Library sharedSingleton];
@@ -112,6 +116,8 @@ NSMutableArray *sharedLibrary;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+//ON CLEAR LIBRARY CLICK
+// - Prompts the user if they are sure they want to clear
 - (IBAction)clearAllBooks:(id)sender {
     
     UIAlertView *messageAlert = [[UIAlertView alloc] initWithTitle:@"Clear Library?"
@@ -119,7 +125,7 @@ NSMutableArray *sharedLibrary;
     [messageAlert show];
 }
 
-//Handle AlertView Button Press
+//HANDLE ALERTVIEW BUTTON PRESS
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if(buttonIndex == 1){
@@ -132,6 +138,9 @@ NSMutableArray *sharedLibrary;
     }
 }
 
+//ON UNWIND TO ROOT VIEW
+// - Used by other views to pop back to the top root view
+// - Reloads catalog and tableview 
 -(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue {
     [_spinner startAnimating];
     

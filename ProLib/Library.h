@@ -11,15 +11,20 @@
 
 @interface Library : NSObject
 
-- (void) printCatalog;
-- (void) loadCatalog;
-
-- (void) addBook:(Book*) bk;
-- (void) clearCatalog;
-
+//MASTER LIBRARY ARRAY
 @property NSMutableArray *bookList;
+
+//BOOK PROPERTY TO SHARE BETWEEN VIEWS
 @property Book * sharedBook;
 
+//LIBRARY CATALOG FUNCTIONS
+- (void) printCatalog;
+- (void) loadCatalog;
+- (void) addBook:(Book*) bk;
+- (void) clearCatalog;
+- (BOOL) isIdFound:(NSInteger) cmpId;
+
+//SHARED SINGLETON
 + (Library *) sharedSingleton;
 
 @end

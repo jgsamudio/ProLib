@@ -36,37 +36,13 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="GAu-GE-TvX" firstAttribute="top" secondItem="30n-Ey-7qx" secondAttribute="bottom" id="5yh-Cc-jjI"/>
                                         <constraint firstItem="30n-Ey-7qx" firstAttribute="leading" secondItem="KUX-HV-cvw" secondAttribute="leadingMargin" constant="7" id="79y-tS-KTg"/>
-                                        <constraint firstItem="30n-Ey-7qx" firstAttribute="leading" secondItem="KUX-HV-cvw" secondAttribute="leadingMargin" id="7tI-eO-hOI"/>
                                         <constraint firstItem="GAu-GE-TvX" firstAttribute="trailing" secondItem="KUX-HV-cvw" secondAttribute="trailingMargin" id="EmX-cY-2cJ"/>
                                         <constraint firstItem="30n-Ey-7qx" firstAttribute="trailing" secondItem="KUX-HV-cvw" secondAttribute="trailingMargin" id="Fmy-02-tcl"/>
-                                        <constraint firstItem="GAu-GE-TvX" firstAttribute="top" secondItem="30n-Ey-7qx" secondAttribute="bottom" constant="8" id="GUJ-Bl-PP4"/>
-                                        <constraint firstItem="GAu-GE-TvX" firstAttribute="top" secondItem="30n-Ey-7qx" secondAttribute="bottom" constant="8" id="JyT-jk-EAu"/>
-                                        <constraint firstItem="GAu-GE-TvX" firstAttribute="top" secondItem="30n-Ey-7qx" secondAttribute="bottom" constant="8" id="Llp-ah-2tk"/>
-                                        <constraint firstItem="GAu-GE-TvX" firstAttribute="trailing" secondItem="KUX-HV-cvw" secondAttribute="trailingMargin" id="Mc5-m4-Gnh"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="30n-Ey-7qx" secondAttribute="trailing" constant="-8" id="NOK-XT-PXa"/>
                                         <constraint firstItem="30n-Ey-7qx" firstAttribute="top" secondItem="KUX-HV-cvw" secondAttribute="topMargin" id="io1-7Z-mBY"/>
-                                        <constraint firstItem="GAu-GE-TvX" firstAttribute="leading" secondItem="KUX-HV-cvw" secondAttribute="leadingMargin" id="kLW-4F-g01"/>
                                         <constraint firstItem="GAu-GE-TvX" firstAttribute="leading" secondItem="KUX-HV-cvw" secondAttribute="leadingMargin" constant="7" id="pLA-WU-zd9"/>
                                         <constraint firstItem="GAu-GE-TvX" firstAttribute="top" secondItem="30n-Ey-7qx" secondAttribute="bottom" constant="2" id="q4M-87-z6U"/>
-                                        <constraint firstItem="30n-Ey-7qx" firstAttribute="trailing" secondItem="KUX-HV-cvw" secondAttribute="trailingMargin" id="vmQ-BD-gGg"/>
-                                        <constraint firstItem="GAu-GE-TvX" firstAttribute="top" secondItem="30n-Ey-7qx" secondAttribute="bottom" constant="8.5" id="wIR-DB-d7T"/>
                                     </constraints>
-                                    <variation key="default">
-                                        <mask key="constraints">
-                                            <exclude reference="7tI-eO-hOI"/>
-                                            <exclude reference="NOK-XT-PXa"/>
-                                            <exclude reference="vmQ-BD-gGg"/>
-                                            <exclude reference="5yh-Cc-jjI"/>
-                                            <exclude reference="GUJ-Bl-PP4"/>
-                                            <exclude reference="JyT-jk-EAu"/>
-                                            <exclude reference="Llp-ah-2tk"/>
-                                            <exclude reference="Mc5-m4-Gnh"/>
-                                            <exclude reference="kLW-4F-g01"/>
-                                            <exclude reference="wIR-DB-d7T"/>
-                                        </mask>
-                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="bookAuthors" destination="GAu-GE-TvX" id="QyD-8Q-gnm"/>
@@ -111,7 +87,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XGB-zt-LHa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1054" y="426"/>
+            <point key="canvasLocation" x="986" y="30"/>
         </scene>
         <!--Add Book-->
         <scene sceneID="IVd-0U-GWf">
@@ -136,35 +112,11 @@
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="bU7-l3-5tR" firstAttribute="top" secondItem="qYW-2a-b6K" secondAttribute="topMargin" constant="-1" id="3ER-DQ-aYJ"/>
-                                                <constraint firstItem="bU7-l3-5tR" firstAttribute="trailing" secondItem="qYW-2a-b6K" secondAttribute="trailingMargin" id="KH9-yn-SEL"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="bU7-l3-5tR" secondAttribute="bottom" constant="-8" id="NME-2h-jWF"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="bU7-l3-5tR" secondAttribute="bottom" constant="-1" id="bZj-k5-ZvW"/>
-                                                <constraint firstItem="bU7-l3-5tR" firstAttribute="leading" secondItem="qYW-2a-b6K" secondAttribute="leadingMargin" id="bjm-Hg-kXh"/>
-                                                <constraint firstItem="bU7-l3-5tR" firstAttribute="top" secondItem="qYW-2a-b6K" secondAttribute="topMargin" constant="-8" id="kMU-Rs-Qvv"/>
-                                                <constraint firstItem="bU7-l3-5tR" firstAttribute="trailing" secondItem="qYW-2a-b6K" secondAttribute="trailingMargin" id="r2y-ru-A0I"/>
-                                                <constraint firstItem="bU7-l3-5tR" firstAttribute="leading" secondItem="qYW-2a-b6K" secondAttribute="leadingMargin" id="wKx-Up-xSe"/>
+                                                <constraint firstItem="bU7-l3-5tR" firstAttribute="leading" secondItem="qYW-2a-b6K" secondAttribute="leadingMargin" id="5DA-fa-AIW"/>
+                                                <constraint firstItem="bU7-l3-5tR" firstAttribute="top" secondItem="qYW-2a-b6K" secondAttribute="topMargin" constant="-1" id="O4b-Nh-Sld"/>
+                                                <constraint firstItem="bU7-l3-5tR" firstAttribute="trailing" secondItem="qYW-2a-b6K" secondAttribute="trailingMargin" id="gsE-8P-ghD"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="bU7-l3-5tR" secondAttribute="bottom" constant="-1.5" id="yd4-4z-5MZ"/>
                                             </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="KH9-yn-SEL"/>
-                                                    <exclude reference="NME-2h-jWF"/>
-                                                    <exclude reference="kMU-Rs-Qvv"/>
-                                                    <exclude reference="wKx-Up-xSe"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="heightClass=regular">
-                                                <mask key="constraints">
-                                                    <exclude reference="3ER-DQ-aYJ"/>
-                                                    <include reference="KH9-yn-SEL"/>
-                                                    <include reference="NME-2h-jWF"/>
-                                                    <exclude reference="bZj-k5-ZvW"/>
-                                                    <exclude reference="bjm-Hg-kXh"/>
-                                                    <include reference="kMU-Rs-Qvv"/>
-                                                    <exclude reference="r2y-ru-A0I"/>
-                                                    <include reference="wKx-Up-xSe"/>
-                                                </mask>
-                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -183,35 +135,11 @@
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="UiY-55-NnX" firstAttribute="leading" secondItem="F51-0Y-I2C" secondAttribute="leadingMargin" id="4HR-Om-fL2"/>
-                                                <constraint firstItem="UiY-55-NnX" firstAttribute="trailing" secondItem="F51-0Y-I2C" secondAttribute="trailingMargin" id="6Wu-KZ-cNk"/>
-                                                <constraint firstItem="UiY-55-NnX" firstAttribute="leading" secondItem="F51-0Y-I2C" secondAttribute="leadingMargin" id="W55-Qb-DrL"/>
-                                                <constraint firstItem="UiY-55-NnX" firstAttribute="trailing" secondItem="F51-0Y-I2C" secondAttribute="trailingMargin" id="ZPL-r7-ugz"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="UiY-55-NnX" secondAttribute="bottom" constant="-8" id="ddF-2K-Hpj"/>
-                                                <constraint firstItem="UiY-55-NnX" firstAttribute="top" secondItem="F51-0Y-I2C" secondAttribute="topMargin" constant="-1" id="hRk-5M-xyy"/>
-                                                <constraint firstItem="UiY-55-NnX" firstAttribute="top" secondItem="F51-0Y-I2C" secondAttribute="topMargin" constant="-8" id="iXh-1D-KC2"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="UiY-55-NnX" secondAttribute="bottom" constant="-1" id="jsL-8V-OnY"/>
+                                                <constraint firstItem="UiY-55-NnX" firstAttribute="trailing" secondItem="F51-0Y-I2C" secondAttribute="trailingMargin" id="Ncx-ZI-VVL"/>
+                                                <constraint firstItem="UiY-55-NnX" firstAttribute="top" secondItem="F51-0Y-I2C" secondAttribute="topMargin" constant="-1" id="NgQ-ZP-Gql"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="UiY-55-NnX" secondAttribute="bottom" constant="-1" id="UZk-ho-9dc"/>
+                                                <constraint firstItem="UiY-55-NnX" firstAttribute="leading" secondItem="F51-0Y-I2C" secondAttribute="leadingMargin" id="sKO-m5-S8d"/>
                                             </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="6Wu-KZ-cNk"/>
-                                                    <exclude reference="W55-Qb-DrL"/>
-                                                    <exclude reference="ddF-2K-Hpj"/>
-                                                    <exclude reference="iXh-1D-KC2"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="heightClass=regular">
-                                                <mask key="constraints">
-                                                    <exclude reference="4HR-Om-fL2"/>
-                                                    <include reference="6Wu-KZ-cNk"/>
-                                                    <include reference="W55-Qb-DrL"/>
-                                                    <exclude reference="ZPL-r7-ugz"/>
-                                                    <include reference="ddF-2K-Hpj"/>
-                                                    <exclude reference="hRk-5M-xyy"/>
-                                                    <include reference="iXh-1D-KC2"/>
-                                                    <exclude reference="jsL-8V-OnY"/>
-                                                </mask>
-                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -230,35 +158,11 @@
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="NFk-g2-rsS" secondAttribute="bottom" constant="-1" id="1f0-6T-l73"/>
-                                                <constraint firstItem="NFk-g2-rsS" firstAttribute="top" secondItem="eDY-aD-MBX" secondAttribute="topMargin" constant="-1" id="21k-7L-COX"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="NFk-g2-rsS" secondAttribute="bottom" constant="-8" id="40I-By-lym"/>
-                                                <constraint firstItem="NFk-g2-rsS" firstAttribute="top" secondItem="eDY-aD-MBX" secondAttribute="topMargin" constant="-8" id="9Th-of-chm"/>
-                                                <constraint firstItem="NFk-g2-rsS" firstAttribute="leading" secondItem="eDY-aD-MBX" secondAttribute="leadingMargin" id="GEI-2b-C0V"/>
-                                                <constraint firstItem="NFk-g2-rsS" firstAttribute="trailing" secondItem="eDY-aD-MBX" secondAttribute="trailingMargin" id="Jzf-0U-6hU"/>
-                                                <constraint firstItem="NFk-g2-rsS" firstAttribute="trailing" secondItem="eDY-aD-MBX" secondAttribute="trailingMargin" id="hkc-Ey-SBw"/>
-                                                <constraint firstItem="NFk-g2-rsS" firstAttribute="leading" secondItem="eDY-aD-MBX" secondAttribute="leadingMargin" id="vIG-6l-hEs"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="NFk-g2-rsS" secondAttribute="bottom" constant="-1" id="1uf-S4-Y4m"/>
+                                                <constraint firstItem="NFk-g2-rsS" firstAttribute="trailing" secondItem="eDY-aD-MBX" secondAttribute="trailingMargin" id="Aa1-aW-K0z"/>
+                                                <constraint firstItem="NFk-g2-rsS" firstAttribute="top" secondItem="eDY-aD-MBX" secondAttribute="topMargin" constant="-1" id="H4I-nS-XDS"/>
+                                                <constraint firstItem="NFk-g2-rsS" firstAttribute="leading" secondItem="eDY-aD-MBX" secondAttribute="leadingMargin" id="XeS-QS-NIl"/>
                                             </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="40I-By-lym"/>
-                                                    <exclude reference="9Th-of-chm"/>
-                                                    <exclude reference="GEI-2b-C0V"/>
-                                                    <exclude reference="hkc-Ey-SBw"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="heightClass=regular">
-                                                <mask key="constraints">
-                                                    <exclude reference="1f0-6T-l73"/>
-                                                    <exclude reference="21k-7L-COX"/>
-                                                    <include reference="40I-By-lym"/>
-                                                    <include reference="9Th-of-chm"/>
-                                                    <include reference="GEI-2b-C0V"/>
-                                                    <exclude reference="Jzf-0U-6hU"/>
-                                                    <include reference="hkc-Ey-SBw"/>
-                                                    <exclude reference="vIG-6l-hEs"/>
-                                                </mask>
-                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -391,13 +295,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="addTable" destination="xrk-ze-qdw" id="kPf-oW-mAg"/>
                         <outlet property="authorField" destination="UiY-55-NnX" id="zOn-qN-Hea"/>
                         <outlet property="categoryField" destination="7oR-9T-vba" id="N1c-lt-8gr"/>
                         <outlet property="doneButton" destination="hSJ-Dy-ueu" id="wYb-FP-zBf"/>
                         <outlet property="publisherField" destination="NFk-g2-rsS" id="oDs-0e-6q9"/>
                         <outlet property="submitButton" destination="nPZ-m7-rZE" id="IqF-bl-AXt"/>
-                        <outlet property="tagView" destination="CKl-5K-btI" id="NHK-PZ-dhE"/>
                         <outlet property="titleField" destination="bU7-l3-5tR" id="VwI-Pb-pnz"/>
                         <segue destination="BMj-6C-aIx" kind="unwind" identifier="exitToLibrarySegue" unwindAction="prepareForUnwind:" id="BAU-ij-45s"/>
                     </connections>
@@ -423,7 +325,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oag-7S-y36" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="242" y="426"/>
+            <point key="canvasLocation" x="302" y="30"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="S2e-qr-GoQ">
@@ -452,7 +354,7 @@
                         <viewControllerLayoutGuide type="bottom" id="SBE-fV-BfN"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="HSO-zR-jNo">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="700"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M6y-3r-dY7">
@@ -470,13 +372,13 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RPI-Kj-EL5">
                                                 <rect key="frame" x="8" y="378" width="584" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Em9-Np-tFQ">
-                                                <rect key="frame" x="8" y="448.5" width="584" height="20.5"/>
+                                                <rect key="frame" x="8" y="448" width="584" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Publisher" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vfx-Z8-atm">
@@ -492,9 +394,9 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zuw-dw-EEL">
-                                                <rect key="frame" x="8" y="516.5" width="584" height="20.5"/>
+                                                <rect key="frame" x="8" y="516" width="584" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Last Checked Out" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXO-e3-lzn">
@@ -504,7 +406,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgL-xD-ikb">
-                                                <rect key="frame" x="8" y="585.5" width="584" height="20.5"/>
+                                                <rect key="frame" x="8" y="585" width="584" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
@@ -618,7 +520,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="600" height="1000"/>
+                    <size key="freeformSize" width="600" height="700"/>
                     <connections>
                         <outlet property="authorTitle" destination="RPI-Kj-EL5" id="XHW-hX-Iyi"/>
                         <outlet property="bookImage" destination="0n3-n1-SmE" id="l9W-s8-TXi"/>
@@ -636,7 +538,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8dV-Iw-gw0" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="N7Z-VP-0Pl" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2563" y="-898"/>
+            <point key="canvasLocation" x="2579" y="-344"/>
         </scene>
         <!--Edit Book-->
         <scene sceneID="Vhw-mY-RAE">
@@ -807,7 +709,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2WD-CC-VwW" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="24o-3T-zWj" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4196" y="-948"/>
+            <point key="canvasLocation" x="3992" y="-344"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Sro-6o-pl7">
@@ -825,7 +727,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cxY-H2-1kC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1752" y="-294"/>
+            <point key="canvasLocation" x="1752" y="-344"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="LMw-0o-LnN">
@@ -843,7 +745,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p0g-Kq-EeP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3384" y="-948"/>
+            <point key="canvasLocation" x="3308" y="-344"/>
         </scene>
     </scenes>
 </document>

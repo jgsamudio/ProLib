@@ -10,20 +10,17 @@
 
 @interface AddBookViewController : UITableViewController <UIAlertViewDelegate>
 
+//NEW BOOK PROPERTIES
+@property (weak, nonatomic) IBOutlet UITextField *titleField;
+@property (weak, nonatomic) IBOutlet UITextField *authorField;
+@property (weak, nonatomic) IBOutlet UITextField *publisherField;
+@property (weak, nonatomic) IBOutlet UITextField *categoryField;
+
+//DONE BUTTON
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 
-@property (weak, nonatomic) IBOutlet UITextField *titleField;
-
-@property (weak, nonatomic) IBOutlet UITextField *authorField;
-
-@property (weak, nonatomic) IBOutlet UITextField *publisherField;
-
+//SUBMIT BUTTON
+// - Add new book to library
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
-
-@property (weak, nonatomic) IBOutlet UIView *tagView;
-
-@property (strong, nonatomic) IBOutlet UITableView *addTable;
-
-@property (weak, nonatomic) IBOutlet UITextField *categoryField;
 
 @end

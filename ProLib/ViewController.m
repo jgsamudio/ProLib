@@ -17,12 +17,11 @@
 @implementation ViewController
 
 - (void)viewDidLoad {
-    
-    
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+
     self.googleReponseArray = [[NSMutableArray alloc] init];
     
+    //INITIATE POSITION FOR LOAD SPINNER
     CGPoint centerOffset = self.view.center;
     centerOffset.y = 200;
     
@@ -31,13 +30,14 @@
     _spinner.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.6f];
     _spinner.center = centerOffset;
     _spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
-    [self.view addSubview: _spinner];
+    [self.contentView addSubview: _spinner];
     
     //QUERY AND SET BOOKS IMAGE
     [self getBookImagesForQuery];
     
     NSLog(@"Library Title: %@", sharedBook.title);
     
+    //LOAD BOOK INFORMATION TO LABELS
     self.titleLabel.text = sharedBook.title;
     self.authorTitle.text = sharedBook.author;
     self.pubLabel.text = sharedBook.publisher;
@@ -46,6 +46,7 @@
     
 }
 
+//RELOAD LABELS ON VIEW APPEAR
 -(void)viewDidAppear:(BOOL)animated {
     NSLog(@"ViewController: viewDidAppear");
     self.titleLabel.text = sharedBook.title;
@@ -54,41 +55,45 @@
     self.catLabel.text = sharedBook.categories;
 }
 
-//Query and set first Google Image to UImage
+//QUERY AND SET FIRST GOOGLE IMAGE TO UIMAGE
+// - Process in background thread
 - (void)getBookImagesForQuery
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         
-        //Do EXTREME PROCESSING!!!
         NSLog(@"BACKGROUND THREAD");
+        
         [_spinner startAnimating];
+        
+        //PREPARE SEARCH QUERY STRING
+        // - Removes spaces and commas
         NSString * title = [sharedBook.title stringByReplacingOccurrencesOfString:@" " withString:@"+"];
         NSString * author = [sharedBook.author stringByReplacingOccurrencesOfString:@" " withString:@"+"];
         author = [author stringByReplacingOccurrencesOfString:@"," withString:@""];
         
         NSString * query = [NSString stringWithFormat:@"%@+%@+%@", title, @"book+cover", author];
         NSLog(@"SEARCH QUERY: %@", query);
+        
         @try{
             
             int firstImageNumber = 1;
             NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:
                                                @"https://ajax.googleapis.com/ajax/services/search/images?v=1.0&rsz=6&q=%@&start=%i&&imgsz=medium",query, firstImageNumber]];
-            
             NSLog(@"url is %@",url);
             
             NSURLRequest *request = [NSURLRequest requestWithURL:url];
-            
             NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-            NSError *error;
             
+            NSError *error;
             NSDictionary *responseDic = [NSJSONSerialization JSONObjectWithData: responseData options:kNilOptions error:&error];
             
-            
+            //RETRIEVE RESPONSE ARRAY
             NSArray *resultArray = [[[responseDic objectForKey:@"responseData"] objectForKey:@"results"] valueForKey:@"url"];
             
             NSURL * imageURL = [NSURL URLWithString:[resultArray objectAtIndex:0]];
             NSLog(@"Request is %@",imageURL);
             
+            //SEARCH RESULTS FOR IMAGE THAT IS NOT NULL
             for(int i = 0; i < [resultArray count]; i++){
                 _imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[resultArray objectAtIndex:i]]];
                 NSLog(@"URL INDEX: %d", i);
@@ -107,7 +112,7 @@
     });
 }
 
-//Alert Message to User Name
+//ALERT MESSAGE FOR USER NAME
 - (IBAction)checkOutAction:(id)sender {
     
     UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Hello!" message:@"Please enter your name:" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Checkout", nil];
@@ -117,7 +122,7 @@
     [alert show];
 }
 
-//Handle AlertView Button Press
+//HANDLE ALERTVIEW BUTTON PRESS
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     
@@ -138,7 +143,7 @@
     }
 }
 
-//Share with Activities: Facebook, Twitter, Email, etc
+//SHARE WITH ACTIVITIES: EMAIL, FACEBOOK, ETC
 - (IBAction)showActivityView:(id)sender {
     
     NSString * shareText = [NSString stringWithFormat:@"I'm reading %@ by %@!", sharedBook.title, sharedBook.author];
@@ -154,8 +159,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+//EDIT BUTTON
+// - Prep singleton and launch segue
 - (IBAction)editButton:(id)sender {
-    
     Library *sharedLib = [Library sharedSingleton];
     sharedLib.sharedBook = sharedBook;
     
