@@ -37,7 +37,7 @@
     if( ![sharedBook.title isEqual:self.titleField.text] ||
           ![sharedBook.author isEqual:self.authorField.text] ||
             ![sharedBook.publisher isEqual:self.publisherField.text] ||
-              ![sharedBook.categories isEqual:self.authorField.text] ) {
+              ![sharedBook.categories isEqual:self.categoriesField.text] ) {
     
         //APPLY CHANGES TO BOOK DETAIL VIEW
         sharedBook.title = self.titleField.text;
