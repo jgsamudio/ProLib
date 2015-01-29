@@ -146,7 +146,7 @@ NSMutableArray *sharedLibrary;
     
     NSLog(@"LibraryTableViewController: prepareForUnwind");
     [self.catalog loadCatalog];
-    NSLog(@"LibraryTableViewController: %lu", self.catalog.bookList.count);
+    NSLog(@"LibraryTableViewController: %lu", (unsigned long)self.catalog.bookList.count);
     [self.tableView reloadData];
     
     [_spinner stopAnimating];

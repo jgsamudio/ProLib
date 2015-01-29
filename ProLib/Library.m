@@ -105,7 +105,7 @@ static Library *sharedLib = NULL;
     }
     
     //LOG CATALOG COUNT
-    NSLog(@"CATALOG: %lu", self.bookList.count);
+    NSLog(@"CATALOG: %lu", (unsigned long)self.bookList.count);
 }
 
 //ADD BOOK
