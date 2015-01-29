@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		20196EE71A771B1D0061F4E5 /* EditBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20196EE61A771B1D0061F4E5 /* EditBookViewController.m */; };
+		2020BDFE1A7AC8BE0017F302 /* EditBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2020BDFC1A7AC8BE0017F302 /* EditBookViewController.m */; };
 		2039683E1A74152700E0E1BB /* PlaceholderBook.png in Resources */ = {isa = PBXBuildFile; fileRef = 2039683D1A74152700E0E1BB /* PlaceholderBook.png */; };
 		2059DC711A70473500229A48 /* LibraryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2059DC701A70473500229A48 /* LibraryTableViewController.m */; };
 		2059DC741A705C0800229A48 /* AddBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2059DC731A705C0800229A48 /* AddBookViewController.m */; };
@@ -34,8 +34,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		20196EE51A771B1D0061F4E5 /* EditBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditBookViewController.h; path = ../EditBookViewController.h; sourceTree = "<group>"; };
-		20196EE61A771B1D0061F4E5 /* EditBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditBookViewController.m; path = ../EditBookViewController.m; sourceTree = "<group>"; };
+		2020BDFC1A7AC8BE0017F302 /* EditBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditBookViewController.m; sourceTree = "<group>"; };
+		2020BDFD1A7AC8BE0017F302 /* EditBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditBookViewController.h; sourceTree = "<group>"; };
 		2039683D1A74152700E0E1BB /* PlaceholderBook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlaceholderBook.png; sourceTree = "<group>"; };
 		2059DC6F1A70473500229A48 /* LibraryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryTableViewController.h; sourceTree = "<group>"; };
 		2059DC701A70473500229A48 /* LibraryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryTableViewController.m; sourceTree = "<group>"; };
@@ -112,8 +112,8 @@
 				2059DC701A70473500229A48 /* LibraryTableViewController.m */,
 				2059DC721A705C0800229A48 /* AddBookViewController.h */,
 				2059DC731A705C0800229A48 /* AddBookViewController.m */,
-				20196EE51A771B1D0061F4E5 /* EditBookViewController.h */,
-				20196EE61A771B1D0061F4E5 /* EditBookViewController.m */,
+				2020BDFC1A7AC8BE0017F302 /* EditBookViewController.m */,
+				2020BDFD1A7AC8BE0017F302 /* EditBookViewController.h */,
 				206345EA1A6ECDFD00A59068 /* Main.storyboard */,
 				206345ED1A6ECDFD00A59068 /* Images.xcassets */,
 				206345EF1A6ECDFD00A59068 /* LaunchScreen.xib */,
@@ -254,7 +254,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				206346081A7013DB00A59068 /* Book.m in Sources */,
-				20196EE71A771B1D0061F4E5 /* EditBookViewController.m in Sources */,
+				2020BDFE1A7AC8BE0017F302 /* EditBookViewController.m in Sources */,
 				206345E91A6ECDFD00A59068 /* ViewController.m in Sources */,
 				206345E61A6ECDFD00A59068 /* AppDelegate.m in Sources */,
 				206345E31A6ECDFD00A59068 /* main.m in Sources */,
