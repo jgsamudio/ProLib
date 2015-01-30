@@ -20,7 +20,7 @@
     [super viewDidLoad];
     NSLog(@"AddBookController: viewDidLoad");
     
-    [self.title becomeFirstResponder];
+    [self.titleField becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -88,6 +88,13 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    if([textField isEqual:self.titleField]) {  [self.authorField becomeFirstResponder]; }
+    else if([textField isEqual:self.authorField]) {  [self.publisherField becomeFirstResponder]; }
+    else if([textField isEqual:self.publisherField]) {  [self.categoryField becomeFirstResponder]; }
+    else if([textField isEqual:self.categoryField]) {
+        [self submitBook:self];
+    }
     
     NSLog(@"ABVC: RETURN PRESSED!");
     return true;
