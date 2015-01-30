@@ -10,7 +10,7 @@
 #import "LibraryTableViewController.h"
 #import "Library.h"
 
-@interface AddBookViewController ()
+@interface AddBookViewController () <UITextFieldDelegate>
 
 @end
 
@@ -19,6 +19,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"AddBookController: viewDidLoad");
+    
+    [self.title becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -83,6 +85,12 @@
         //GO BACK TO LIBRARY TABLE VIEW
         [self dismissViewControllerAnimated:YES completion:nil];
     }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    NSLog(@"ABVC: RETURN PRESSED!");
+    return true;
 }
 
 @end
